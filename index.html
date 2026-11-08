@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6f2">
+    <meta name="description" content="A practical, evidence-led field guide to getting your OAuth app ready for real users.">
+    <title>Fieldguide — OAuth, without the guesswork</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="wordmark" href="/" aria-label="Fieldguide home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>fieldguide<span class="wordmark-dot">.</span></span>
+      </a>
+      <nav class="topnav" aria-label="Main navigation">
+        <a class="active" href="#library">Guide library</a>
+        <a href="#how-it-works">How it works</a>
+      </nav>
+      <a class="nav-cta" href="#generate">Research an app <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="live-dot"></span> THE DEVELOPER'S OAUTH FIELDGUIDE</div>
+          <h1>Get connected.<br><span>Know what it takes.</span></h1>
+          <p>Every provider has a different path from “create an app” to “ready for real users.” Get the steps, the stakes, and the parts nobody can do for you.</p>
+          <a class="text-link" href="#library">Explore the guide library <span>↓</span></a>
+        </div>
+        <aside class="hero-aside" aria-label="The guide promise">
+          <div class="aside-index">FIELD NOTE&nbsp; 001</div>
+          <div class="aside-quote">OAuth setup is not one task. It is a path with <em>checkpoints.</em></div>
+          <div class="aside-rule"></div>
+          <div class="aside-bottom"><span>SETUP WORK</span><span>+</span><span>PROVIDER REVIEW</span><span>+</span><span>YOUR USERS</span></div>
+        </aside>
+      </section>
+
+      <section class="oauth-model" aria-label="How provider OAuth apps relate to user connections">
+        <div class="model-intro">
+          <div class="section-kicker">00 &nbsp; / &nbsp; BEFORE YOU START</div>
+          <h2>Three things that<br>often get mixed up.</h2>
+        </div>
+        <div class="model-cards">
+          <article>
+            <span>01 / YOUR APP</span>
+            <h3>The provider OAuth app</h3>
+            <p>Your integration's registration: client ID, redirect URL, and requested permissions. It identifies <em>your product</em> to the provider.</p>
+          </article>
+          <article>
+            <span>02 / EACH CUSTOMER</span>
+            <h3>The user's connection</h3>
+            <p>Each user or workspace still consents to connect. Your integration handles that authorization and safeguards the resulting tokens.</p>
+          </article>
+          <article>
+            <span>03 / MAYBE A GATE</span>
+            <h3>Provider review</h3>
+            <p>Verification or directory review is a separate checkpoint—not the OAuth flow itself. A managed-auth platform may own the provider app; check before registering your own.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="search-band" id="library">
+        <div>
+          <div class="section-kicker">01 &nbsp; / &nbsp; START WITH A PROVIDER</div>
+          <h2>Find your next connection</h2>
+        </div>
+        <label class="search-wrap">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="guide-search" type="search" placeholder="Search providers or setup challenges..." autocomplete="off">
+          <kbd> / </kbd>
+        </label>
+      </section>
+
+      <section class="library-area" aria-label="OAuth guide library">
+        <div class="filter-row">
+          <div class="filter-tabs" role="group" aria-label="Filter guides">
+            <button class="filter-tab selected" type="button" data-filter="all">All guides <span>04</span></button>
+            <button class="filter-tab" type="button" data-filter="quick">Quick setup</button>
+            <button class="filter-tab" type="button" data-filter="review">Review ahead</button>
+          </div>
+          <span class="library-count">4 PRACTICAL STARTING POINTS</span>
+        </div>
+        <div class="guide-grid" id="guide-grid"></div>
+        <div class="empty-search" id="empty-search" hidden>No guides match that search. <a href="#generate">Ask the research agent to look it up →</a></div>
+      </section>
+
+      <section class="callout" id="generate">
+        <div class="callout-copy">
+          <div class="eyebrow"><span class="agent-spark">✳</span> NOT IN THE LIBRARY?</div>
+          <h2>Put the research agent<br>on the trail.</h2>
+          <p>Enter an app name or website. The research helper searches public web results, then builds a shareable first-pass guide with cited sources and clearly marked unknowns.</p>
+          <div class="callout-disclaimer"><span aria-hidden="true">i</span> Search-backed draft, not an LLM or approval advice. Verify provider sources.</div>
+        </div>
+        <form class="research-form" id="research-form">
+          <label for="app-query">APP NAME OR WEBSITE</label>
+          <div class="input-row">
+            <input id="app-query" name="app" placeholder="e.g. Linear or linear.app" maxlength="180" required>
+            <button type="submit" id="research-submit"><span>Generate guide</span><span aria-hidden="true">↗</span></button>
+          </div>
+          <p class="form-hint">We search public web results. Open provider sources to verify. No account access required.</p>
+          <div class="research-status" id="research-status" role="status" aria-live="polite" hidden>
+            <span class="spinner" aria-hidden="true"></span>
+            <span id="status-text">Searching public provider documentation</span>
+          </div>
+        </form>
+      </section>
+      <section class="generated-guide" id="generated-guide" hidden aria-live="polite"></section>
+
+      <section class="how-section" id="how-it-works">
+        <div class="how-heading">
+          <div class="section-kicker">02 &nbsp; / &nbsp; A BETTER WAY THROUGH</div>
+          <h2>Less guessing.<br>More forward motion.</h2>
+        </div>
+        <div class="how-steps">
+          <article><span>01</span><h3>Know the path</h3><p>Separate the work you can do today from the provider's review queue, if there is one.</p></article>
+          <article><span>02</span><h3>Do the next thing</h3><p>Get a practical checklist, likely effort, and the snags to look for before they block you.</p></article>
+          <article><span>03</span><h3>Know who owns it</h3><p>See what an agent can prepare—and where a human must log in, attest, or make the call.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="wordmark footer-mark" href="/"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>fieldguide<span class="wordmark-dot">.</span></span></a>
+      <span>Evidence first. Estimates labeled. You stay in control.</span>
+      <span>MADE FOR BUILDERS, NOT CHECKLISTS.</span>
+    </footer>
+    <dialog class="guide-dialog" id="guide-dialog" aria-label="OAuth setup guide">
+      <button class="dialog-close" type="button" aria-label="Close guide">×</button>
+      <div id="dialog-content"></div>
+    </dialog>
+  </body>
+</html>
